@@ -59,4 +59,4 @@ while True:
         break
     parser.parse(s)
 
-    # To run the parser do the following in a terminal window: head -30 plyParserInputs/mpstat.out | grep -v '^\s*$' | python PlyMpstat.py | sed "s/_~_/1, 9999, 2,/"
+    # To run the parser do the following in a terminal window: cat plyParserInputs/ls.out | python PLY.py
