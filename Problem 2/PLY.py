@@ -1,11 +1,9 @@
-tokens = ('NAME','EXTENSION', 'EXE', 'FILENAME')
-literals = ['/', '*' ]
+tokens = ('FILENAME', 'FOLDERNAME', 'EXENAME')
 
 # Tokens
-t_NAME   = r'[!-~]+'
-t_EXTENSION    = r'\.[a-zA-Z]+$'
-t_EXE     = r'\.exe$'
-t_FILENAME = r'^[!-~]+\.[a-zA-Z]+$'
+t_FILENAME = r'^[ -~]+\.[a-zA-Z]+$'
+t_FOLDERNAME = r'^[ -~]+/$'
+t_EXENAME = r'^[ -~]+\.exe\*'
 
 # Ignored characters
 t_ignore = " \r\n"
@@ -34,16 +32,16 @@ def p_start(t):
     '''
 
 def p_file(t):
-    'file : FILENAME '
+    'file : FILENAME'
     print "Saw file: " + str(t[1])
 
 def p_folder(t):
-    'folder : NAME "/"'
+    'folder : FOLDERNAME'
     print "Saw folder: " + str(t[1])
 
 def p_executable(t):
-    'executable : NAME EXE "*"'
-    print "Saw executable: " + str(t[1]) + str(t[2])
+    'executable : EXENAME'
+    print "Saw executable: " + str(t[1])
 
 def p_error(t):
     if t == None:
